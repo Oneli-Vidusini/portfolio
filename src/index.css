@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #6FB3B8;
+  --color-brand-hover: #8dcadd;
+  --color-brand-dark: #4b868a;
+  
+  --color-bg-dark: #080a0e;
+  --color-bg-card-dark: #11141b;
+  --color-border-dark: #1b212c;
+  
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-title: 'Outfit', system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background-color: var(--color-bg-dark);
+    color: #f3f4f6;
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #080a0e;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #1b212c;
+    border-radius: 3px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #6FB3B8;
+  }
+}
+
+/* Custom Cursor styles */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background-color: #6FB3B8;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid rgba(111, 179, 184, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s ease-out, width 0.2s, height 0.2s, border-color 0.2s;
+}
+
+/* Mouse Glow Background */
+.mouse-glow-bg {
+  background: radial-gradient(500px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(111, 179, 184, 0.07), transparent 80%);
+  pointer-events: none;
+  inset: 0;
+  position: fixed;
+  z-index: 1;
+}
+
+/* Card glass effect */
+.glass-card {
+  background: rgba(17, 20, 27, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(27, 33, 44, 0.7);
+  box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.4);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(111, 179, 184, 0.35);
+  box-shadow: 0 12px 35px 0 rgba(111, 179, 184, 0.06), inset 0 0 12px rgba(111, 179, 184, 0.01);
+  transform: translateY(-4px);
+}
+
+/* Navigation link underline glow */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #6FB3B8;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 8px #6FB3B8;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Glowing text */
+.glow-text {
+  text-shadow: 0 0 10px rgba(111, 179, 184, 0.3);
+}
+
+/* Dot grid background pattern */
+.dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Timeline vertical line glow */
+.timeline-line {
+  background: linear-gradient(to bottom, transparent, rgba(111, 179, 184, 0.4) 15%, rgba(111, 179, 184, 0.4) 85%, transparent);
+}
+
+/* Light Mode Overrides */
+:root.light-mode {
+  --color-bg-dark: #f3f5f8;
+  --color-bg-card-dark: #ffffff;
+  --color-border-dark: #d2d8e2;
+  color: #1e293b;
+}
+
+:root.light-mode body {
+  background-color: var(--color-bg-dark);
+  color: #1e293b;
+}
+
+:root.light-mode .glass-card {
+  background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(210, 216, 226, 0.8);
+  box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.04);
+}
+
+:root.light-mode .glass-card:hover {
+  border-color: rgba(111, 179, 184, 0.55);
+  box-shadow: 0 12px 35px 0 rgba(111, 179, 184, 0.08);
+}
+
+:root.light-mode .dot-grid {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.035) 1px, transparent 1px);
+}
+
+:root.light-mode .custom-cursor-ring {
+  border-color: rgba(111, 179, 184, 0.6);
+}
+
+/* Simple helper overrides for text in light mode */
+:root.light-mode .text-gray-400 {
+  color: #4b5563 !important;
+}
+:root.light-mode .text-gray-300 {
+  color: #1f2937 !important;
+}
+:root.light-mode .text-slate-400 {
+  color: #475569 !important;
+}
+:root.light-mode .text-slate-300 {
+  color: #1e293b !important;
+}
+:root.light-mode .text-gray-500 {
+  color: #374151 !important;
+}
+:root.light-mode .bg-bg-dark {
+  background-color: #f3f5f8 !important;
+}
+:root.light-mode .bg-bg-card-dark {
+  background-color: #ffffff !important;
+}
+:root.light-mode .border-border-dark {
+  border-color: #d2d8e2 !important;
+}
+
